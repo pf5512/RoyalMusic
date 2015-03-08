@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="fill_parent"
+    android:padding="15dip"
+    android:gravity="center"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imgPlayListIcon"
+        android:layout_width="0dip"
+        android:layout_weight="0.1"
+        android:layout_gravity="left|center_vertical"
+        android:src="@drawable/ic_m_playlist_icon"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvPlayListTitle"
+        style="@style/stylePlayListTitle"
+        android:layout_width="0dip"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:paddingLeft="10dip"
+        android:layout_weight="0.6"
+        android:gravity="left|center_vertical"
+        android:layout_height="wrap_content"
+        android:text="@string/testPlayListTitle" />
+
+    <TextView
+        android:id="@+id/tvPlayListMusicNum"
+        style="@style/stylePlayListNum"
+        android:layout_width="0dip"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:layout_weight="0.3"
+        android:drawableRight="@drawable/selector_m_playlist_enter"
+        android:gravity="right|center_vertical"
+        android:layout_height="wrap_content"
+        android:drawablePadding="10dip"
+        android:text="@string/testPlayListNum"
+         />
+
+</LinearLayout>

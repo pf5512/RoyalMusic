@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="layout_bottom">false</item>
+    <item type="id" name="btn_open_left">false</item>
+    <item type="id" name="btn_open_right">false</item>
+    <item type="id" name="listView">false</item>
+    <item type="id" name="button1">false</item>
+    <item type="id" name="button2">false</item>
+    <item type="id" name="iv_icon">false</item>
+    <item type="id" name="tv_name">false</item>
+</resources>

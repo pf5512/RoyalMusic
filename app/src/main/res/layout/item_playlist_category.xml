@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="117dip"
+        android:background="@drawable/default_music_pre_border"
+        android:scaleType="fitXY"
+        android:src="@drawable/default_music_pre" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:layout_marginTop="-1dip"
+        android:background="@drawable/ic_h_hot_driver_bg"
+        android:gravity="center_vertical"
+        android:weightSum="1" >
+
+        <TextView
+            style="@style/styleHListMusciTitleStr"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.7"
+            android:ellipsize="end"
+            android:gravity="left|center_vertical"
+            android:padding="5dip"
+            android:singleLine="true"
+            android:text="@string/testMusicName" />
+
+        <FrameLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.3">
+
+            <ImageButton
+                android:layout_width="28dip"
+                android:layout_height="28dip"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="10dip"
+                android:background="@drawable/selector_h_list_music_play_or_pause"
+                android:contentDescription="@string/desPlayOrPause"
+                android:src="@drawable/ic_h_list_play" />
+        </FrameLayout>
+    </LinearLayout>
+
+</LinearLayout>

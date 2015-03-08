@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="65dip"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/imgPlayingIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/list_item_playing"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dip">
+        <!-- music name -->
+
+        <TextView
+            android:id="@+id/tvMusicTitle"
+            style="@style/stylePlayListTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@string/testMusicName" />
+
+        <!-- music author -->
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:id="@+id/tvMusicAuthor"
+                style="@style/styleMusicListAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/testMusicAuthor" />
+
+
+            <TextView
+                android:id="@+id/tvDuration"
+                style="@style/styleMusicListAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:layout_gravity="right|center_vertical"
+                android:layout_toRightOf="@id/tvMusicAuthor"
+                android:drawableLeft="@drawable/ic_hor_line"
+                android:ellipsize="end"
+                android:layout_marginLeft="5dip"
+                android:drawablePadding="5dip"
+                android:singleLine="true"
+                android:text="@string/testMusicAuthor" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

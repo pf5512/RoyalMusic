@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="100dip">
+
+        <ImageView
+            android:id="@+id/imgAblumIcon"
+            android:layout_width="fill_parent"
+            android:layout_height="100dip"
+            android:background="@drawable/default_music_pre_border"
+            android:padding="1dip"
+            android:scaleType="fitXY"
+            android:src="@drawable/default_music_pre" />
+
+        <ImageView
+            android:id="@+id/imgPlayorPause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:focusable="false"
+            android:background="@drawable/selector_l_grid_pause_or_play"
+            android:src="@drawable/ic_grid_front_play" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_h_hot_driver_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvAblumName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@string/testAblumName"
+            android:textColor="@color/color_music_title"
+            android:textSize="13.0sp" />
+
+        <TextView
+            android:id="@+id/tvArtist"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:text="@string/testMusicAuthor"
+            android:textColor="@color/color_seek_bar_music_time"
+            android:textSize="10.0sp" />
+    </LinearLayout>
+</LinearLayout>

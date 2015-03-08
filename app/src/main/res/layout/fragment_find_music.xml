@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:viewFlow="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dip" >
+
+        <!-- start hot -->
+
+        <com.twp.music.ui.ViewFlow
+            android:id="@+id/splashViewFlow"
+            android:layout_width="fill_parent"
+            android:layout_height="150dip"
+            android:background="@drawable/default_music_pre_border"
+            viewFlow:sidebuffer="3" >
+
+        </com.twp.music.ui.ViewFlow>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="37dp"
+            android:layout_marginTop="-1dip"
+            android:background="@drawable/ic_h_hot_driver_bg"
+            android:gravity="center_vertical"
+            android:weightSum="1" >
+
+            <TextView
+                style="@style/styleHListMusciTitleStr"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.3"
+                android:gravity="left|center_vertical"
+                android:padding="5dip"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="@string/testMusicName" />
+
+            <FrameLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.4" >
+
+                <com.twp.music.ui.CircleFlowIndicator
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    viewFlow:activeColor="#7e7e7e"
+                    viewFlow:activeType="fill"
+                    viewFlow:fadeOut="0"
+                    viewFlow:inactiveColor="#7e7e7e"
+                    viewFlow:inactiveType="stroke"
+                    viewFlow:radius="5dp" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.3" >
+
+                <ImageButton
+                    android:layout_width="28dip"
+                    android:layout_height="28dip"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="10dip"
+                    android:background="@drawable/selector_h_list_music_play_or_pause"
+                    android:contentDescription="@string/desPlayOrPause"
+                    android:src="@drawable/ic_h_list_pause" />
+            </FrameLayout>
+        </LinearLayout>
+        <!-- end hot -->
+
+
+        <!-- 主题推荐 -->
+		<include
+		     layout="@layout/item_playlist"/>
+		
+		<include
+		     layout="@layout/item_playlist"/>
+    </LinearLayout>
+
+</ScrollView>

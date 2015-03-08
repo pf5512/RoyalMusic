@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.twp.music.ui.layoutswipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!--后面的要先布局 -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:tag="Bottom2">
+
+        <ImageView
+            android:id="@+id/trash"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/ic_l_list_item_delete" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:gravity="center"
+        android:layout_height="65dip">
+        <ImageView
+            android:id="@+id/imgPlayingIcon"
+            android:layout_width="wrap_content"
+            android:src="@drawable/list_item_playing"
+            android:visibility="visible"
+            android:scaleType="fitXY"
+            android:layout_height="fill_parent" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="8dip"
+            android:gravity="center"
+            android:orientation="vertical">
+            <!-- music name -->
+
+            <TextView
+                android:id="@+id/tvMusicTitle"
+                style="@style/stylePlayListTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/testMusicName" />
+
+            <!-- music author -->
+
+            <TextView
+                android:id="@+id/tvMusicAuthor"
+                style="@style/styleMusicListAuthor"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/testMusicAuthor" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.twp.music.ui.layoutswipe.SwipeLayout>

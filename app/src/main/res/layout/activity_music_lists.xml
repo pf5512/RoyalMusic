@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.twp.music.MusicListsActivity">
+
+    <!--top 0.1-->
+    <LinearLayout
+        android:id="@+id/linearNav"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="top"
+        android:background="@drawable/ic_h_nav_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- back -->
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:contentDescription="@string/desSetting"
+            android:scaleType="center"
+            android:src="@drawable/ic_p_menu_back" />
+
+        <!-- title -->
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/stylePlayMusicTitle"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6"
+            android:gravity="center"
+            android:maxLines="1"
+            android:focusable="true"
+            android:ellipsize="marquee"
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:text="@string/localMusic" />
+
+
+        <!-- playAll -->
+        <FrameLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2">
+
+            <ImageButton
+                android:id="@+id/btnPlayAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/selector_h_list_music_play_or_pause"
+                android:contentDescription="@string/desSearch"
+                android:scaleType="center"
+                android:src="@drawable/ic_h_list_play" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <include
+        layout="@layout/common_play_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearNav"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"></include>
+
+</RelativeLayout>

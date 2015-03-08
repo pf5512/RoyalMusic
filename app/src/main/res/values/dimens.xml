@@ -1,0 +1,14 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- start home -->
+    <dimen name="h_nav_height">60dp</dimen>
+    <dimen name="h_music_pre_height">61dp</dimen>
+    <dimen name="h_music_pre_img_width">67dp</dimen>
+    <dimen name="h_music_pre_img_height">52dp</dimen>
+
+    <dimen name="h_nav_padding_left_right">20dp</dimen>
+</resources>

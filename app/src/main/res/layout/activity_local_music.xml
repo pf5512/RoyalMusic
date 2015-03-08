@@ -1,0 +1,112 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/color_app_bg"
+    android:orientation="vertical"
+    tools:context="com.twp.music.LocalMusicActivity">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_below="@+id/linearNav"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-4dip"
+            android:orientation="horizontal"
+            android:weightSum="0.9">
+
+            <RadioButton
+                android:id="@+id/radioAllMusic"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_l_tab"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:padding="5dip"
+                style="@style/styleLocalMusicTabStr"
+                android:text="@string/localAllMusic"
+                android:layout_weight="0.3" />
+            <RadioButton
+                android:id="@+id/radioArtistBrowse"
+                android:layout_width="0dip"
+                android:background="@drawable/selector_l_tab"
+                android:button="@null"
+                android:checked="false"
+                android:gravity="center"
+                android:padding="5dip"
+                style="@style/styleLocalMusicTabStr"
+                android:text="@string/artistBrowse"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3" />
+            <RadioButton
+                android:id="@+id/radioDirBrowse"
+                android:layout_width="0dip"
+                android:background="@drawable/selector_l_tab"
+                android:button="@null"
+                android:checked="false"
+                android:gravity="center"
+                android:padding="5dip"
+                style="@style/styleLocalMusicTabStr"
+                android:text="@string/dirBrowse"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3" />
+        </RadioGroup>
+
+        <!--top 0.1-->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:id="@id/linearNav"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/ic_h_nav_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- back -->
+
+            <ImageButton
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:contentDescription="@string/desSetting"
+                android:scaleType="center"
+                android:id="@+id/imgBack"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_p_menu_back" />
+
+            <!-- title -->
+            <TextView
+                style="@style/stylePlayMusicTitle"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:gravity="center"
+                android:text="@string/localMusic" />
+
+
+            <!-- list -->
+
+            <ImageButton
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:contentDescription="@string/desSearch"
+                android:scaleType="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_h_nav_search" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="@string/hello_world" />
+
+</LinearLayout>

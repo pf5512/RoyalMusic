@@ -1,0 +1,208 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/color_app_bg"
+    android:orientation="vertical"
+    tools:context="com.twp.music.MainActivity">
+
+    <!-- content -->
+
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingTop="@dimen/h_nav_height"
+        android:paddingBottom="@dimen/h_music_pre_height"
+        android:text="@string/hello_world" />
+
+    <!-- Header 发现音乐 ，我的音乐  Gri -->
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/h_nav_height"
+        android:layout_gravity="top"
+        android:background="@drawable/ic_h_nav_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- setting -->
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:contentDescription="@string/desSetting"
+            android:scaleType="center"
+            android:paddingRight="@dimen/h_nav_padding_left_right"
+            android:paddingLeft="@dimen/h_nav_padding_left_right"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_h_nav_setting" />
+
+        <!-- 切换 -->
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_h_nav_tab_bg"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioFindMusic"
+                style="@style/styleHNavStr"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_gravity="right|center_vertical"
+                android:layout_weight="0.5"
+                android:background="@drawable/selector_h_nav_find_music"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:padding="5dip"
+                android:text="@string/findMusic" />
+
+            <RadioButton
+                android:id="@+id/radioMyMusic"
+                style="@style/styleHNavStr"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_gravity="left|center_vertical"
+                android:layout_weight="0.5"
+                android:background="@drawable/selector_h_nav_my_music"
+                android:button="@null"
+                android:checked="false"
+                android:gravity="center"
+                android:padding="5dip"
+                android:text="@string/myMusic" />
+        </RadioGroup>
+
+        <!-- search -->
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:contentDescription="@string/desSearch"
+            android:scaleType="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="@dimen/h_nav_padding_left_right"
+            android:paddingRight="@dimen/h_nav_padding_left_right"
+            android:src="@drawable/ic_h_nav_search" />
+    </RelativeLayout>
+
+
+    <!-- buttom -->
+    <FrameLayout
+        android:id="@+id/bottomPlay"
+        android:visibility="visible"
+        android:layout_width="fill_parent"
+        android:layout_gravity="bottom"
+        android:layout_height="@dimen/h_music_pre_height">
+
+        <LinearLayout
+            android:id="@+id/bNavContetn"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/h_music_pre_height"
+            android:background="@drawable/ic_h_bnav_bg"
+            android:onClick="jumpPlayMusicActivity">
+
+            <!-- music pre w:132xh:102 di = 1 -->
+
+            <ImageView
+                android:id="@+id/imgArtistIcon"
+                android:layout_width="@dimen/h_music_pre_img_width"
+                android:layout_height="@dimen/h_music_pre_img_height"
+                android:layout_gravity="center"
+                android:layout_margin="5dip"
+                android:scaleType="fitXY"
+                android:background="@drawable/default_music_pre_border"
+                android:contentDescription="@string/desMusicPreImg"
+                android:onClick="jumpPlayMusicActivity"
+                android:src="@drawable/default_music_pre" />
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:onClick="jumpPlayMusicActivity"
+                android:orientation="vertical">
+
+                <!-- music name -->
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:onClick="jumpPlayMusicActivity"
+                    android:singleLine="true"
+                    android:id="@+id/tvMusicTitle"
+                    android:text="@string/testMusicName"
+                    android:textColor="@color/color_music_title"
+                    android:textSize="18sp" />
+
+                <!-- music author -->
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:onClick="jumpPlayMusicActivity"
+                    android:id="@+id/tvMusicAuthor"
+                    android:singleLine="true"
+                    android:text="@string/testMusicAuthor"
+                    android:textColor="@color/color_music_author"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bnavLinear"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <!-- 播放列表 -->
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/btnPlayList"
+                    android:background="@drawable/selector_p_next_or_before_bg"
+                    android:contentDescription="@string/desPlayList"
+                    android:src="@drawable/ic_p_next_btn" />
+                <!-- 开始暂停 -->
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dip"
+                    android:id="@+id/btnPauseOrPlay"
+                    android:background="@drawable/selector_h_bnav_music_play_or_pause"
+                    android:contentDescription="@string/desPlayOrPause"
+                    android:src="@drawable/ic_h_music_btn_play" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="2dip"
+            android:layout_gravity="top"
+            android:layout_marginBottom="@dimen/h_music_pre_height"
+            android:indeterminate="false"
+            android:max="1000"
+            android:paddingBottom="0dip"
+            android:paddingTop="0dip"
+            android:progressDrawable="@drawable/progress_horizontal_holo_light"/>
+
+    </FrameLayout>
+
+</FrameLayout>

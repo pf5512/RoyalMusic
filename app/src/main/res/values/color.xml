@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<color name="color_h_nav_tab_str_checked">#03a9f5</color>
+<color name="color_h_nav_tab_str">#0287c4</color>
+<color name="color_app_bg">#ebeced</color>
+<color name="color_music_title">#000000</color>
+<color name="color_music_author">#717171</color>
+<color name="color_list_recommend_title">#03a9f5</color>
+<color name="color_more_str">#ffffff</color>
+<color name="color_playlist_music_count">#4f4f4f</color>
+<color name="color_seek_bar_music_time">#747474</color>
+
+
+</resources>

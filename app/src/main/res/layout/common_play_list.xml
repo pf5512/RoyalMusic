@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- listView 不加背景，需要在其他布局中补上-->
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/listViewLocalMusic"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:divider="@drawable/ic_playlist_driver"
+    android:dividerHeight="1dip"/>

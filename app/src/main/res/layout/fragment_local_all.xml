@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.twp.music.fragment.LocalAllMusicFragment">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_margin="5dp"
+        android:id="@+id/linearTotalNum"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvTotalMusicNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:text="@string/testPlayListNum"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:id="@+id/btnPlayAll"
+            android:background="@drawable/selector_h_list_music_play_or_pause"
+            android:src="@drawable/ic_h_list_play"
+            />
+        </RelativeLayout>
+    <ListView
+        android:id="@+id/listViewLocalMusic"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginRight="4dip"
+        android:layout_marginLeft="4dip"
+        android:layout_marginBottom="-10dip"
+        android:paddingBottom="10dip"
+        android:layout_marginTop="5dip"
+        android:layout_below="@id/linearTotalNum"
+        android:background="@color/color_more_str"
+        android:divider="@drawable/ic_playlist_driver"
+        android:dividerHeight="1dip"/>
+
+</RelativeLayout>

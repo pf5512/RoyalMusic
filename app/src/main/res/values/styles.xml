@@ -1,0 +1,93 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="ActivityNotitleBar" parent="AppBaseTheme">
+       <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="styleTextShadow">
+        <item name="android:shadowColor">#4d4d4d</item>
+        <item name="android:shadowDx">6</item>
+        <item name="android:shadowDy">6</item>
+        <item name="android:shadowRadius">5</item>
+    </style>
+    <style name="styleHNavStr" >
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/selector_h_nav_text</item>
+        
+    </style>
+    
+    <style name="styleHListMusciTitleStr" >
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/color_music_title</item>
+    </style>
+
+    <style name="styleHListRecommend" >
+         <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/color_list_recommend_title</item>
+    </style>
+
+    <!-- 15sp #FFFFFF-->
+    <style name="styleLoginStr">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/color_more_str</item>
+    </style>
+
+    <style name="styleUserDescStr">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/color_more_str</item>
+    </style>
+
+    <style name="stylePlayListTitle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/color_music_title</item>
+    </style>
+
+    <style name="stylePlayListNum">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/color_playlist_music_count</item>
+    </style>
+
+    <style name="styleMyMusicList">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/color_playlist_music_count</item>
+    </style>
+
+    <style name="stylePlayMusicTitle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/color_more_str</item>
+    </style>
+    <style name="styleSeekBarMusicTime">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/color_seek_bar_music_time</item>
+
+    </style>
+
+    <style name="styleMusicListAuthor" >
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/color_music_author</item>
+    </style>
+
+    <style name="styleLocalMusicTabStr">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/selector_local_tab_str</item>
+    </style>
+</resources>
