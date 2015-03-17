@@ -52,5 +52,9 @@
     <string name="fast_scroll_alphabet">\u0020ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
     <string name="title_activity_music_lists">MusicList</string>
     <string name="line">|</string>
+    <string name="unkown_album">未知艺术家</string>
+
+    <string name="notification_artist_album"><xliff:g id="album">%2$s</xliff:g>\n<xliff:g id="artist">%1$s</xliff:g></string>
+
 
 </resources>

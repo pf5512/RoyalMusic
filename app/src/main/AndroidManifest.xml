@@ -35,7 +35,12 @@
         <activity
             android:name=".PlayMusicActivity"
             android:label="@string/title_activity_play_music"
+            android:launchMode="singleTop"
             android:theme="@style/ActivityNotitleBar" >
+            <intent-filter>
+                <action android:name="com.android.music.PLAYBACK_VIEWER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".LocalMusicActivity"
@@ -48,8 +53,7 @@
             android:label="@string/title_activity_music_lists" >
         </activity>
         <service
-            android:name=".service.PlayBackService"
-            android:enabled="true"
+            android:name="com.twp.music.service.PlayBackService"
             android:exported="true" >
 
         </service>

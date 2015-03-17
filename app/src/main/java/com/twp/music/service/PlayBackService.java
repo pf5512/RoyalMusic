@@ -1,5 +1,8 @@
 package com.twp.music.service;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -18,6 +21,7 @@ import android.os.Message;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.provider.MediaStore;
+import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.twp.music.IPlayBackService;
@@ -32,7 +36,8 @@ import java.util.Vector;
 
 public class PlayBackService extends Service {
 
-    /** used to specify whether enqueue() should start playing
+    /**
+     * used to specify whether enqueue() should start playing
      * the new list of files right away, next or once all the currently
      * queued files have been played
      */
@@ -93,28 +98,34 @@ public class PlayBackService extends Service {
         NOCE(2),
         //随机
         SHUFFLE(3);
-        private PlayMode(int intValue){
-                this.intValue = intValue;
+
+        private PlayMode(int intValue) {
+            this.intValue = intValue;
         }
+
         private int intValue;
 
         public int getIntValue() {
             return intValue;
         }
-        public static int modelSize(){
+
+        public static int modelSize() {
             return 3;
         }
-        public static PlayMode getModel(int value){
-            if(value == 1){
+
+        public static PlayMode getModel(int value) {
+            if (value == 1) {
                 return NORMAL;
-            }else if(value ==2 ){
+            } else if (value == 2) {
                 return NOCE;
-            }else if(value == 3){
+            } else if (value == 3) {
                 return SHUFFLE;
             }
-            throw new RuntimeException("don't has this mode value:"+value);
+            throw new RuntimeException("don't has this mode value:" + value);
         }
-    };
+    }
+
+    ;
 
     //存储设备挂载的次数
     private int mMediaMountedCount = 0;
@@ -165,9 +176,10 @@ public class PlayBackService extends Service {
 
     private Handler mMediaplayerHandler = new Handler() {
         float mCurrentVolume = 1.0f;
+
         @Override
         public void handleMessage(Message msg) {
-            Logger.i("mMediaplayerHandler.handleMessage msg = "+msg.what);
+            Logger.i("mMediaplayerHandler.handleMessage msg = " + msg.what);
             switch (msg.what) {
 
                 case FADEDOWN:
@@ -240,7 +252,7 @@ public class PlayBackService extends Service {
                         mCursor = getCursorForId(mPlayList[mPlayPos]);
                     }
                     notifyChange(META_CHANGED);
-                    updateNotification();
+                    updateNotifications();
                     setNextTrack();
                     break;
                 default:
@@ -257,7 +269,7 @@ public class PlayBackService extends Service {
      * 3.weight 更新
      * 目前只处理activty
      */
-    private void notifyChange(String what){
+    private void notifyChange(String what) {
         Intent i = new Intent(what);
         i.putExtra("id", Long.valueOf(getAudioId()));
         i.putExtra("artist", getArtistName());
@@ -324,7 +336,7 @@ public class PlayBackService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        Logger.i("onCreate", "getPackageName:" + getPackageName());
         //获取音频管理对象
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
@@ -352,6 +364,7 @@ public class PlayBackService extends Service {
         notifyChange(META_CHANGED);
 
         //TODO 如果服务没有使用，stopSerivce,后期实现参看系统播放器 MediaPlaybackService.mDelayedStopHandler
+        Logger.i("onCreate", "getPackageName:" + getPackageName());
     }
 
 
@@ -401,13 +414,15 @@ public class PlayBackService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         mServiceInUse = true;
+        Logger.i("IBinder.onBind", "------");
         return mBinder;
     }
 
     @Override
     public void onRebind(Intent intent) {
-        mServiceInUse = true;
         super.onRebind(intent);
+        mServiceInUse = true;
+        Logger.i("IBinder.onRebind", "------");
     }
 
     @Override
@@ -655,7 +670,7 @@ public class PlayBackService extends Service {
             // assume there is a problem and don't restore the state.
             Cursor crsr = MusicUtils.query(this,
                     MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-                    new String[] { "_id" }, "_id=" + mPlayList[mPlayPos], null,
+                    new String[]{"_id"}, "_id=" + mPlayList[mPlayPos], null,
                     null);
             if (crsr == null || crsr.getCount() == 0) {
                 // wait a bit and try again
@@ -690,7 +705,7 @@ public class PlayBackService extends Service {
 
             long seekpos = mPreferences.getLong("seekpos", 0);
             seek(seekpos >= 0 && seekpos < duration() ? seekpos : 0);
-            Logger.d( "restored queue, currently at position " + position()
+            Logger.d("restored queue, currently at position " + position()
                     + "/" + duration() + " (requested " + seekpos + ")");
 
 
@@ -783,10 +798,10 @@ public class PlayBackService extends Service {
                 } else {
                     mOpenFailedCounter = 0;
                     if (!mQuietMode) {
-                        Toast.makeText(this,getResources().getString(R.string.service_start_error_msg),
+                        Toast.makeText(this, getResources().getString(R.string.service_start_error_msg),
                                 Toast.LENGTH_SHORT).show();
                     }
-                    Logger.d( "Failed to open file for playback");
+                    Logger.d("Failed to open file for playback");
                     gotoIdleState();
                     if (mIsSupposedToBePlaying) {
                         mIsSupposedToBePlaying = false;
@@ -880,8 +895,8 @@ public class PlayBackService extends Service {
             // of another focus loss
             mMediaplayerHandler.removeMessages(FADEDOWN);
             mMediaplayerHandler.sendEmptyMessage(FADEUP);
-
-            updateNotification();
+            Logger.d("Plays-onstart", "start goto play");
+            updateNotifications();
             if (!mIsSupposedToBePlaying) {
                 mIsSupposedToBePlaying = true;
                 notifyChange(PLAYSTATE_CHANGED);
@@ -889,6 +904,7 @@ public class PlayBackService extends Service {
 
         }
     }
+
     public void gotoNext(boolean force) {
         synchronized (this) {
             if (mPlayListLen <= 0) {
@@ -914,6 +930,7 @@ public class PlayBackService extends Service {
             notifyChange(META_CHANGED);
         }
     }
+
     private void stop(boolean remove_status_icon) {
         if (mPlayer != null && mPlayer.isInitialized()) {
             mPlayer.stop();
@@ -1019,7 +1036,7 @@ public class PlayBackService extends Service {
     }
 
     /*
-	  Desired behavior for prev/next/shuffle:
+      Desired behavior for prev/next/shuffle:
 
 	  - NEXT will move to the next track in the list when not shuffling, and to
 	    a track randomly picked from the not-yet-played tracks when shuffling.
@@ -1054,11 +1071,11 @@ public class PlayBackService extends Service {
                 }
                 //原始播放器中 mHistory最后一个就是当前播放的，我们要下一曲就是在比当前的-1，在mHistory中找到倒数第2个
                 Integer pos = mHistory.remove(histsize - 1);
-                Logger.i("PlayBackService","current play position:"+mPlayPos+" , history lastPosition:"+pos);
+                Logger.i("PlayBackService", "current play position:" + mPlayPos + " , history lastPosition:" + pos);
                 //如果mHistory中有除了当前播放还有其他的歌曲这里获取position。
-                if(histsize>1){
-                    pos = mHistory.get(histsize-1);
-                    Logger.i("PlayBackService","prev position:"+ pos.intValue());
+                if (histsize > 1) {
+                    pos = mHistory.get(histsize - 1);
+                    Logger.i("PlayBackService", "prev position:" + pos.intValue());
                 }
                 mPlayPos = pos.intValue();
             } else {
@@ -1094,12 +1111,14 @@ public class PlayBackService extends Service {
                 mPlayer.pause();
                 gotoIdleState();
                 mIsSupposedToBePlaying = false;
-               notifyChange(PLAYSTATE_CHANGED);
+                notifyChange(PLAYSTATE_CHANGED);
                 /* saveBookmarkIfNeeded();*/
             }
         }
     }
-    /** Returns whether something is currently playing
+
+    /**
+     * Returns whether something is currently playing
      *
      * @return true if something is playing (or will be playing shortly, in case
      * we're currently transitioning between tracks), false if not.
@@ -1111,6 +1130,7 @@ public class PlayBackService extends Service {
 
     /**
      * Moves the item at index1 to index2.
+     *
      * @param index1
      * @param index2
      */
@@ -1145,12 +1165,13 @@ public class PlayBackService extends Service {
                     mPlayPos++;
                 }
             }
-          notifyChange(QUEUE_CHANGED);
+            notifyChange(QUEUE_CHANGED);
         }
     }
 
     /**
      * Returns the current play list
+     *
      * @return An array of integers containing the IDs of the tracks in the play list
      */
     public long[] getQueue() {
@@ -1163,13 +1184,15 @@ public class PlayBackService extends Service {
             return list;
         }
     }
+
     /**
      * Appends a list of tracks to the current playlist.
      * If nothing is playing currently, playback will be started at
      * the first track.
      * If the action is NOW, playback will switch to the first of
      * the new tracks immediately.
-     * @param list The list of tracks to append.
+     *
+     * @param list   The list of tracks to append.
      * @param action NOW, NEXT or LAST
      */
     public void enqueue(long[] list, int action) {
@@ -1197,12 +1220,14 @@ public class PlayBackService extends Service {
             }
         }
     }
+
     /**
      * Removes the range of tracks specified from the play list. If a file within the range is
      * the file currently being played, playback will move to the next file after the
      * range.
+     *
      * @param first The first file to be removed
-     * @param last The last file to be removed
+     * @param last  The last file to be removed
      * @return the number of tracks deleted
      */
     public int removeTracks(int first, int last) {
@@ -1262,6 +1287,7 @@ public class PlayBackService extends Service {
     /**
      * Removes all instances of the track with the given id
      * from the playlist.
+     *
      * @param id The id to be removed
      * @return how many instances of the track were removed
      */
@@ -1305,8 +1331,10 @@ public class PlayBackService extends Service {
         }
         return -1;
     }
+
     /**
      * Returns the position in the queue
+     *
      * @return the position in the queue
      */
     public int getQueuePosition() {
@@ -1451,39 +1479,43 @@ public class PlayBackService extends Service {
     }
 
     //TODO 后面完成
-    private void updateNotification(){} /*{
-        RemoteViews views = new RemoteViews(getPackageName(),
-                R.layout.statusbar);
-        views.setImageViewResource(R.id.icon,
-                R.drawable.stat_notify_musicplayer);
-        if (getAudioId() < 0) {
-            // streaming
-            views.setTextViewText(R.id.trackname, getPath());
-            views.setTextViewText(R.id.artistalbum, null);
-        } else {
-            String artist = getArtistName();
-            views.setTextViewText(R.id.trackname, getTrackName());
-            if (artist == null || artist.equals(MediaStore.UNKNOWN_STRING)) {
-                artist = getString(R.string.unknown_artist_name);
-            }
-            String album = getAlbumName();
-            if (album == null || album.equals(MediaStore.UNKNOWN_STRING)) {
-                album = getString(R.string.unknown_album_name);
-            }
+    private void updateNotifications(){
+        if (getBaseContext() != null && getPackageName() != null) {
+            RemoteViews views = new RemoteViews(getPackageName(),
+                    R.layout.statusbar);
+            views.setImageViewResource(R.id.icon,
+                    R.drawable.ic_m_local_music_icon);
+            if (getAudioId() < 0) {
+                // streaming
+                views.setTextViewText(R.id.trackname, getPath());
+                views.setTextViewText(R.id.artistalbum, null);
+            } else {
+                String artist = getArtistName();
+                views.setTextViewText(R.id.trackname, getTrackName());
+                if (artist == null || artist.equals(MediaStore.UNKNOWN_STRING)) {
+                    artist = getString(R.string.unkown_album);
+                }
+                String album = getAlbumName();
+                if (album == null || album.equals(MediaStore.UNKNOWN_STRING)) {
+                    album = getString(R.string.unkown_album);
+                }
 
-            views.setTextViewText(
-                    R.id.artistalbum,
-                    getString(R.string.notification_artist_album, artist, album));
+                views.setTextViewText(
+                        R.id.artistalbum,
+                        getString(R.string.notification_artist_album, artist, album));
+            }
+            Notification status = new Notification();
+            status.contentView = views;
+            status.flags |= Notification.FLAG_ONGOING_EVENT;
+            status.icon = R.drawable.ic_m_local_music_icon;
+            status.defaults = Notification.DEFAULT_ALL;
+            status.contentIntent = PendingIntent.getActivity(this, 0, new Intent(
+                    "com.android.music.PLAYBACK_VIEWER")
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK), 0);
+
+            startForeground(PLAYBACKSERVICE_STATUS, status);
         }
-        Notification status = new Notification();
-        status.contentView = views;
-        status.flags |= Notification.FLAG_ONGOING_EVENT;
-        status.icon = R.drawable.stat_notify_musicplayer;
-        status.contentIntent = PendingIntent.getActivity(this, 0, new Intent(
-                "com.android.music.PLAYBACK_VIEWER")
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK), 0);
-        startForeground(PLAYBACKSERVICE_STATUS, status);
-    }*/
+    }
 
     /**
      * 注册Command广播
@@ -1697,11 +1729,12 @@ public class PlayBackService extends Service {
             return mService.get().getAudioSessionId();
         }
 
-        public void setPlayMode(int playModel){
+        public void setPlayMode(int playModel) {
             mService.get().playModel = PlayMode.getModel(playModel);
         }
+
         // shuffle is open ,[ 0=closed,1=nomal,2=auto]
-        public int getPlayMode(){
+        public int getPlayMode() {
             return mService.get().playModel.getIntValue();
         }
 
